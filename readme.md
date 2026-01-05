@@ -1,4 +1,4 @@
-Tic Tac Toe – AI Powered Web Game
+**Tic Tac Toe – AI Powered Web Game**
 
 This is a web-based Tic Tac Toe game with an AI opponent, built using Flask, HTML, CSS, and JavaScript.
 The AI uses the Minimax algorithm to make optimal decisions, making it impossible to defeat.
@@ -6,7 +6,8 @@ The AI uses the Minimax algorithm to make optimal decisions, making it impossibl
 This project demonstrates the integration of artificial intelligence concepts with web development.
 
 
-Features
+
+**# Features**
 - Play Tic Tac Toe against an AI opponent
 - Choose to play as X or O
 - AI makes optimal moves using the Minimax algorithm
@@ -16,7 +17,8 @@ Features
 - Clean and responsive user interface
 
 
-Technologies Used
+
+**# Technologies Used**
 - Python
 - Flask
 - HTML
@@ -25,7 +27,8 @@ Technologies Used
 - Minimax Algorithm
 
 
-Project Structure
+
+**# Project Structure**
 
 Tic-Tac-Toe/
 - app.py
@@ -41,7 +44,8 @@ Tic-Tac-Toe/
   - result.png
 
 
-How to Run the Project
+
+**# How to Run the Project**
 Step 1: Clone the Repository
 git clone https://github.com/your-username/tic-tac-toe-ai.git
 cd tic-tac-toe-ai
@@ -56,7 +60,8 @@ Step 4: Open in Browser
 http://127.0.0.1:5000/
 
 
-How the AI Works
+
+**# How the AI Works**
 
 The AI uses the Minimax algorithm, which evaluates all possible moves and selects the one that maximizes its chances of winning while minimizing the opponent’s chances.
 
@@ -67,7 +72,7 @@ Draw → score 0
 Based on these scores, the AI always chooses the best possible move.
 
 
-Future Improvements
+**# Future Improvements**
 - Add difficulty levels
 - Implement multiplayer mode
 - Improve mobile responsiveness
