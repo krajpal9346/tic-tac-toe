@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe | AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Tic Tac Toe</h1>
+
+    <!-- Symbol Selection -->
+    <div id="symbolCard" class="card">
+        <p>Choose your token</p>
+        <button onclick="startGame('X')">Play as X</button>
+        <button onclick="startGame('O')">Play as O</button>
+    </div>
+
+    <!-- Game Area -->
+    <div id="game" class="hidden">
+        <div class="scoreboard">
+            <span>You: <span id="humanScore">0</span></span>
+            <span>AI: <span id="aiScore">0</span></span>
+        </div>
+
+        <div id="board" class="board"></div>
+
+        <p id="status"></p>
+        <button onclick="resetGame()">Restart</button>
+    </div>
+</div>
+
+<script>
+/* ---------- GAME STATE ---------- */
+let board = Array(9).fill("");
+let human = "";
+let ai = "";
+let currentTurn = "";
+let gameOver = false;
+let aiThinking = false;
+
+let humanScore = 0;
+let aiScore = 0;
+
+const boardDiv = document.getElementById("board");
+const statusText = document.getElementById("status");
+
+/* ---------- START GAME ---------- */
+function startGame(symbol) {
+    human = symbol;
+    ai = symbol === "X" ? "O" : "X";
+
+    board = Array(9).fill("");
+    gameOver = false;
+    aiThinking = false;
+    currentTurn = "X"; // X always starts
+
+    statusText.textContent = "";
+    document.getElementById("symbolCard").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+
+    renderBoard();
+
+    if (currentTurn === ai) {
+        aiMove();
+    } else {
+        statusText.textContent = "Your turn";
+    }
+}
+
+/* ---------- RENDER BOARD ---------- */
+function renderBoard() {
+    boardDiv.innerHTML = "";
+    board.forEach((cell, index) => {
+        const div = document.createElement("div");
+        div.className = "cell";
+        div.textContent = cell;
+        div.onclick = () => playerMove(index);
+        boardDiv.appendChild(div);
+    });
+}
+
+/* ---------- HUMAN MOVE ---------- */
+function playerMove(index) {
+    if (
+        gameOver ||
+        aiThinking ||
+        board[index] !== "" ||
+        currentTurn !== human
+    ) return;
+
+    board[index] = human;
+    currentTurn = ai;
+    renderBoard();
+    aiMove();
+}
+
+/* ---------- AI MOVE ---------- */
+function aiMove() {
+    aiThinking = true;
+    statusText.textContent = "🤖 AI is thinking...";
+
+    fetch("/move", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            board: board,
+            ai: ai,
+            human: human
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        board = data.board;
+        renderBoard();
+        aiThinking = false;
+
+        if (data.winner) {
+            gameOver = true;
+
+            if (data.winner === human) {
+                statusText.textContent = "🎉 You Win!";
+                humanScore++;
+            } else if (data.winner === ai) {
+                statusText.textContent = "🤖 AI Wins!";
+                aiScore++;
+            } else {
+                statusText.textContent = "🤝 It's a Draw!";
+            }
+            updateScore();
+        } else {
+            currentTurn = human;
+            statusText.textContent = "Your turn";
+        }
+    });
+}
+
+/* ---------- SCORE ---------- */
+function updateScore() {
+    document.getElementById("humanScore").textContent = humanScore;
+    document.getElementById("aiScore").textContent = aiScore;
+}
+
+/* ---------- RESET GAME ---------- */
+function resetGame() {
+    board = Array(9).fill("");
+    gameOver = false;
+    aiThinking = false;
+    currentTurn = "X";
+    statusText.textContent = "";
+
+    renderBoard();
+
+    if (ai === "X") {
+        aiMove();
+    } else {
+        statusText.textContent = "Your turn";
+    }
+}
+</script>
+
+</body>
+</html>

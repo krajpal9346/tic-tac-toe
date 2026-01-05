@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.container {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+    margin-bottom: 12px;
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.card p {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+button {
+    background: linear-gradient(135deg, #ffb347, #ffcc33);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 6px;
+    cursor: pointer;
+    color: #2c2c2c;
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.cell {
+    height: 95px;
+    background: #ffffff;
+    border-radius: 14px;
+    font-size: 40px;
+    font-weight: 700;
+    color: #5a67d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cell:hover {
+    background: #edf2ff;
+    transform: scale(1.05);
+}
+
+#status {
+    font-size: 18px;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
