@@ -61,6 +61,19 @@ http://127.0.0.1:5000/
 
 
 
+**# Screenshots**
+
+**## Home Screen**
+![Home Screen](screenshots/Home.png)
+
+**## Gameplay**
+![Gameplay](screenshots/gameplay.png)
+
+**## Result Screen**
+![Result Screen](screenshots/Result.png)
+
+
+
 **# How the AI Works**
 
 The AI uses the Minimax algorithm, which evaluates all possible moves and selects the one that maximizes its chances of winning while minimizing the opponent’s chances.
