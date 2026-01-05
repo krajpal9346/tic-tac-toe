@@ -74,7 +74,7 @@ http://127.0.0.1:5000/
 
 
 
-**# How the AI Works**
+**# How AI Works**
 
 The AI uses the Minimax algorithm, which evaluates all possible moves and selects the one that maximizes its chances of winning while minimizing the opponent’s chances.
 
